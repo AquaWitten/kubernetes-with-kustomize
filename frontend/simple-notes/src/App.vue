@@ -2,14 +2,18 @@
 import { ref } from 'vue'
 import SimpleInput from './components/SimpleInput.vue'
 import SimpleOverview from './components/SimpleOverview.vue'
+import { v4 } from 'uuid'
+import type { Note } from './interfaces/Note'
 
-const noteArr = ref<string[]>([])
+const noteArr = ref<Note[]>([])
 const text = ref('')
 
 const getStoredNotes = () => {}
 
 const handleSubmit = () => {
-  noteArr.value.push(text.value)
+  const uuid = v4()
+  const note: Note = { id: uuid, note: text.value }
+  noteArr.value.push(note)
   text.value = ''
 }
 </script>
